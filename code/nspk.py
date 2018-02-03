@@ -1,13 +1,14 @@
 import random
 
 def analyze(msg):
-    known.append(msg)
-    if type(msg) == tuple:
-        for c in msg:
-            analyze(c)
-    if type(msg) == list:
-        if msg[1] in known: # need to know key to decrypt!
-            analyze(msg[0])
+	if msg not in known:
+		known.append(msg)
+	if type(msg) == tuple:
+		for c in msg:
+			analyze(c)
+	if type(msg) == list:
+		if msg[1] in known: # need to know key to decrypt!
+			analyze(msg[0])
 
 def send(msg,who):
     log.append((who,msg))
