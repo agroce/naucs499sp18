@@ -103,11 +103,7 @@ for i in range(0,RUNS):
                 while first == second:
                     first = random.choice([A,B,I])
                     second = random.choice([A,B,I])
-                #nonces = filter(lambda x:x[0] == "N",known)
-                if False:
-                    third = random.choice(nonces)
-                else:
-                    third = random.choice(known)
+                third = random.choice(known)
                 fourth = random.choice(known)
                 #key = PK[random.choice([A,B])]
                 key = PK[second]
