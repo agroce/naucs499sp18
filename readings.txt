@@ -19,7 +19,7 @@ OPTIONAL READINGS ON heartbleed and "goto fail" bugs:
       https://www.imperialviolet.org/2014/02/22/applebug.html
       https://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c
 myself and grad students: "Coverage and Its Discontents"
-      http://www.cs.cmu.edu/~agroce/onwardessays14.pdf
+      http://www.cefns.nau.edu/~adg326/onwardessays14.pdf
           (this last one is more useful once we talk more about dynamic analysis)
 
 =======================================================================================
