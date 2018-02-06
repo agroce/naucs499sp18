@@ -28,7 +28,7 @@ OPTIONAL READINGS ON heartbleed and "goto fail" bugs:
 READINGS FOR FEBRUARY 8:
 
 - Chess and McGraw, "Static Analysis for Security":
-  - http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.88.7235&rep=rep1&type=pdf
+  - https://courses.cs.washington.edu/courses/cse484/14au/reading/bsi5-static.pdf
 - Holzmann (my boss at JPL, inventor of the SPIN Model Checker) on his static analysis tool:
   - http://www.spinroot.com/uno/uno_long.pdf
 - Discussion of python tools:
