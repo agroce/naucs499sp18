@@ -107,7 +107,6 @@ def run(parsed, store):
             assert v in store
             e = s.children[1]
             ev = eval(e, store)
-            print "SETTING",v,"TO",ev
             store[v] = ev
         elif stype == "cond":
             e = s.children[0]

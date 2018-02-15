@@ -4,12 +4,14 @@ P = ll.parse(
 """
    {
     int x;
-    x := 4*(3+4);
+    int y;
+    y := 4;
+    x := y*(3+y);
     print x;
     if (x > 20) {
-       print x;
+       print 10000;
     } else {
-       print 2;
+       print 20000;
     };
     while (x > 1) {
        print x;
