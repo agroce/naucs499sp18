@@ -52,6 +52,11 @@ def eval(expr, store):
         return eval(expr.children[0], store) 
     elif expr.data == "var":
         v = expr.children[0][0]
+        if v not in store:
+            assert False,v+" is not in the store!"
+        ev = store[v]
+        if ev == None:
+            assert False,v+" not initialized!"
         return store[v]
     elif expr.data == "int":
         return int(expr.children[0])
