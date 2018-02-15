@@ -1,55 +1,23 @@
-from lark import Lark
+import littlelanguage as ll
 
-parser = Lark(r"""
-    var: WORD
-    int: SIGNED_NUMBER
+P = ll.parse(
+"""
+   {
+    int x;
+    x := 4*(3+4);
+    print x;
+    if (x > 20) {
+       print x;
+    } else {
+       print 2;
+    };
+    while (x > 1) {
+       print x;
+       x := x - 1;
+    };
+   }
+""")
 
-    expr: "(" expr ")"
-          | int
-          | var
-          | add
-          | sub
-          | mul
-          | div
-          | lt
-          | gt
-          | eq
+ll.run(P,{})
 
-    add: expr "+" expr
-    sub: expr "-" expr
-    mul: expr "*" expr
-    div: expr "/" expr
-
-    lt: expr "<" expr
-    gt: expr ">" expr
-    eq: expr "=" expr
-
-    decl: "int" var
-    assign: var ":=" expr
-    cond: "if" expr block "else" block
-    loop: "while" expr block
-    print: "print" expr
-
-    stmt: decl ";"
-          | assign ";"
-          | cond ";"
-          | loop ";"
-          | print ";"
-
-    block: "{" stmt+ "}"
-
-    program: block
-
-    %import common.SIGNED_NUMBER
-    %import common.WORD
-    %import common.WS
-    %ignore WS
-
-    """, start='program')
-
-parsed = parser.parse("{int x; x := 4*(3+4);}")
-print parsed
-print parsed.data
-for s in parsed.children:
-    print s.data
 
