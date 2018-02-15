@@ -2,7 +2,6 @@ from lark import Lark
 
 parser = Lark(r"""
     var: WORD
-
     int: SIGNED_NUMBER
 
     expr: "(" expr ")"
@@ -13,6 +12,8 @@ parser = Lark(r"""
           | mul
           | div
           | lt
+          | gt
+          | eq
 
     add: expr "+" expr
     sub: expr "-" expr
@@ -20,14 +21,20 @@ parser = Lark(r"""
     div: expr "/" expr
 
     lt: expr "<" expr
+    gt: expr ">" expr
+    eq: expr "=" expr
 
     decl: "int" var
     assign: var ":=" expr
     cond: "if" expr block "else" block
+    loop: "while" expr block
+    print: "print" expr
 
     stmt: decl ";"
           | assign ";"
           | cond ";"
+          | loop ";"
+          | print ";"
 
     block: "{" stmt+ "}"
 
