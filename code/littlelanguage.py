@@ -1,5 +1,7 @@
 from lark import Lark
 
+i = -1
+
 parser = Lark(r"""
     var: WORD
     int: SIGNED_NUMBER
@@ -30,11 +32,14 @@ parser = Lark(r"""
     loop: "while" expr block
     print: "print" expr
 
+    comment: "//" stmt
+
     stmt: decl ";"
           | assign ";"
           | cond ";"
           | loop ";"
           | print ";"
+          | comment
 
     block: "{" stmt+ "}"
 
@@ -130,4 +135,94 @@ def run(parsed, store):
             e = s.children[0]
             ev = eval(e, store)
             print ev          
-            
+
+def CFG(parsed):
+    theCFG = {}
+    theCFG["<init>"] = ("<init>", None, [])
+    return buildCFG(parsed, theCFG, "<init>")[1]
+
+def newNodeGen():
+    i = 0
+    while True:
+        yield "S" + str(i).zfill(4)
+        i += 1
+        
+nodeGen = newNodeGen()
+
+def newNode():
+    return next(nodeGen)
+        
+def used(expr):
+    if expr.data == "expr":
+        return used(expr.children[0])
+    elif expr.data == "var":
+        v = expr.children[0][0]
+        return [v]
+    elif expr.data == "int":
+        return []
+    elif expr.data in ["add","mul","sub","div","lt","gt","eq"]:
+        ev1 = used(expr.children[0])
+        ev2 = used(expr.children[1])
+        return ev1 + ev2
+    else:
+        assert False,"Unexpected item in expression!"    
+
+def buildCFG(parsed, cfg, parent):
+    if parsed.data == "program":
+        (exit, cfg) = buildCFG(parsed.children[0], cfg, parent)
+        cfg["<exit>"] = ("<exit>",None,[])
+        (_,_,esuccs) = cfg[exit]
+        esuccs.append("<exit>")
+        return ("<exit>",cfg)
+    elif parsed.data == "block":
+        for s in parsed.children:
+            (exit, cfg) = buildCFG(s, cfg, parent)
+            parent = exit
+        return (parent, cfg)
+    elif parsed.data == "stmt":
+        s = parsed.children[0]
+        stype = s.data
+        name = newNode()
+        (_,_,psucc) = cfg[parent]
+        psucc.append(name)
+        if stype == "comment":
+            cfg[name] = ("comment",None,[])
+            return (name, cfg)        
+        if stype == "decl":
+            v = (s.children[0].children[0])[0]
+            cfg[name] = ("decl",{"decl":[v]},[])
+            return (name, cfg)
+        elif stype == "assign":
+            v = (s.children[0].children[0])[0]
+            e = s.children[1]
+            eused = used(e)
+            cfg[name] = ("assign",{"def":[v],"use":eused},[])
+            return (name, cfg)
+        elif stype == "cond":
+            e = s.children[0]
+            b1 = s.children[1]
+            b2 = s.children[2]
+            eused = used(e)
+            cfg[name] = ("cond",{"use":eused},[])            
+            (exit1, cfg) = buildCFG(b1, cfg, name)
+            (exit2, cfg) = buildCFG(b2, cfg, name)
+            mname = newNode()
+            cfg[exit1][2].append(mname)
+            cfg[exit2][2].append(mname)
+            msucc = []
+            cfg[mname] = ("merge",None,[])
+            return (mname, cfg)
+        elif stype == "loop":
+            e = s.children[0]
+            b = s.children[1]
+            eused = used(e)            
+            cfg[name] = ("loop",{"use":eused},[])            
+            (exit, cfg) = buildCFG(b, cfg, name)
+            (_, _, esucc) = cfg[exit]
+            esucc.append(name)
+            return (name, cfg)
+        elif stype == "print":
+            e = s.children[0]
+            eused = used(e)
+            cfg[name] = ("print",{"use":eused},[])
+            return (name, cfg)            
