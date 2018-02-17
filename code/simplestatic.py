@@ -36,15 +36,15 @@ K = 2
 
 warnings = {}
 
+def getWarnings():
+    return warnings
+
 def WARNING(msg, node, path):
     if (msg, node) in warnings:
         if len(path) < len(warnings[(msg,node)]):
             warnings[(msg,node)] = path
-            print msg,node,path
     else:
-        warnings[(msg,node)] = path
-        print msg,node,path
-        
+        warnings[(msg,node)] = path        
 
 def findDeclIssues(cfg, node, decls, useds, path):
     (name, data, succ) = cfg[node]
@@ -108,6 +108,15 @@ for node in sorted(cfg.keys()):
 checkUseDef(cfg)
 checkDecls(cfg)
 
-ll.run(P,{})
+if len(getWarnings()) == 0:
+    ll.run(P,{})
+else:
+    print "STATIC ANALYSIS WARNINGS: DO NOT EXECUTE!"
+    allWarnings = getWarnings().iteritems()
+    sortedWarnings = sorted(allWarnings, key = lambda w:w[0][1])
+    for (mn, path) in sortedWarnings:
+        print "*"*50
+        (msg, node) = mn
+        print msg, " IN ", node, ":", path
         
 
