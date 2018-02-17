@@ -39,6 +39,14 @@ warnings = {}
 def getWarnings():
     return warnings
 
+def printWarnings():
+    allWarnings = warnings.iteritems()
+    sortedWarnings = sorted(allWarnings, key = lambda w:w[0][1])
+    for (mn, path) in sortedWarnings:
+        print "*"*50
+        (msg, node) = mn
+        print msg, " IN ", node, ":", path    
+
 def WARNING(msg, node, path):
     if (msg, node) in warnings:
         if len(path) < len(warnings[(msg,node)]):
@@ -112,11 +120,6 @@ if len(getWarnings()) == 0:
     ll.run(P,{})
 else:
     print "STATIC ANALYSIS WARNINGS: DO NOT EXECUTE!"
-    allWarnings = getWarnings().iteritems()
-    sortedWarnings = sorted(allWarnings, key = lambda w:w[0][1])
-    for (mn, path) in sortedWarnings:
-        print "*"*50
-        (msg, node) = mn
-        print msg, " IN ", node, ":", path
+    printWarnings()
         
 
