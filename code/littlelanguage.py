@@ -1,7 +1,5 @@
 from lark import Lark
 
-i = -1
-
 parser = Lark(r"""
     var: WORD
     int: SIGNED_NUMBER
@@ -170,10 +168,11 @@ def used(expr):
 def buildCFG(parsed, cfg, parent):
     if parsed.data == "program":
         (exit, cfg) = buildCFG(parsed.children[0], cfg, parent)
-        cfg["<exit>"] = ("<exit>",None,[])
+        ename = newNode() + " (exit)"
+        cfg[ename] = ("<exit>",None,[])
         (_,_,esuccs) = cfg[exit]
-        esuccs.append("<exit>")
-        return ("<exit>",cfg)
+        esuccs.append(ename)
+        return (ename, cfg)
     elif parsed.data == "block":
         for s in parsed.children:
             (exit, cfg) = buildCFG(s, cfg, parent)
