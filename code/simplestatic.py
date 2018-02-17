@@ -1,4 +1,5 @@
 import littlelanguage as ll
+import cfggraph
 
 P = ll.parse(
 """
@@ -113,6 +114,8 @@ for node in sorted(cfg.keys()):
     for s in succ:
         print "  --> ",s
 
+cfggraph.makeGraph(cfg)
+        
 checkUseDef(cfg)
 checkDecls(cfg)
 
