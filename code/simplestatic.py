@@ -34,8 +34,17 @@ P = ll.parse(
 
 K = 2
 
-def WARNING(b, msg):
-    print msg
+warnings = {}
+
+def WARNING(msg, node, path):
+    if (msg, node) in warnings:
+        if len(path) < len(warnings[(msg,node)]):
+            warnings[(msg,node)] = path
+            print msg,node,path
+    else:
+        warnings[(msg,node)] = path
+        print msg,node,path
+        
 
 def findDeclIssues(cfg, node, decls, useds, path):
     (name, data, succ) = cfg[node]
@@ -46,17 +55,17 @@ def findDeclIssues(cfg, node, decls, useds, path):
             used = data["use"]
             for u in used:
                 if u not in decls:
-                    WARNING (False, u+" used w/o decl in " + name + ": " + repr(path))
+                    WARNING(u + " used w/o decl", node, path)
         if "def" in data:
             defd = data["def"]
             for d in defd:
                 if d not in decls:
-                    WARNING (False, d+" defd w/o decl in " + name + ": " + repr(path))
+                    WARNING(d + " defd w/o decl", node, path)
         if "decl" in data:
             decld = data["decl"]
             for d in decld:
                 if d in decls:
-                    WARNING (False, d+" decld TWICE in " + name + ": " + repr(path))                
+                    WARNING(d + " decld TWICE", node, path)                
     for s in succ:
         sf = filter(lambda p: p == s, path)
         if len(sf) < K:
@@ -65,7 +74,7 @@ def findDeclIssues(cfg, node, decls, useds, path):
     if len(succ) == 0:
         for d in decls:
             if d not in useds:
-                WARNING (False, d+" decld but never used in " + name + ": " + repr(path))
+                WARNING(d + " decld but never used", node, path)
 
 def checkDecls(cfg):
     findDeclIssues(cfg,"<init>",[],[],["<init>"])
@@ -78,7 +87,7 @@ def findBadUseDef(cfg, node, defs, path):
             used = data["use"]
             for u in used:
                 if u not in defs:
-                    WARNING (False, u+" used w/o def in " + name + ": " + repr(path))
+                    WARNING(u + " used w/o def", node, path)
         if "def" in data:
             defd = data["def"]
     for s in succ:
