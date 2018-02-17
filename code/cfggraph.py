@@ -10,4 +10,4 @@ def makeGraph(cfg):
     for s in cfg:
         for s2 in cfg[s][2]:
             dot.edge(s,s2)
-    dot.render("cfg.pdf",view=True)
+    dot.render("cfg",view=True)
