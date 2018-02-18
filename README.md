@@ -21,6 +21,16 @@ LIVING SYLLABUS:
   - Protocol fuzzing
 - Static analysis
   - Basics: dead code, crying wolf, prioritizing warnings, pointers are hard
+  - Chess and McGraw overview
+  - Comparing Python tools (picky configurable pylint vs. friendly pyflakes)
+  - Uno:  uninitialized variables, null pointers, out-of-bounds access
+    - Basic dataflow
+    - Automata composition to find def-use
+  - Building a simple static analysis tool
+    - Parse
+    - Build annotated CFG
+    - Walk the annotated CFG
+    - Reporting warnings more succinctly
 
 - Dynamic analysis
 - SQL injection attacks
