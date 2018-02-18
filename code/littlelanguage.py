@@ -50,6 +50,47 @@ parser = Lark(r"""
 
     """, start='program')
 
+def exprToStr(expr):
+    if expr.data == "expr" and expr.children[0].data == "expr":
+        return "(" + exprToStr(expr.children[0]) + ")"
+    elif expr.data == "expr":
+        return exprToStr(expr.children[0])
+    elif expr.data == "var":
+        v = expr.children[0][0]
+        return str(v)
+    elif expr.data == "int":
+        return str(int(expr.children[0]))
+    elif expr.data == "add":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " + " + ev2
+    elif expr.data == "sub":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " - " + ev2
+    elif expr.data == "mul":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " * " + ev2
+    elif expr.data == "div":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " / " + ev2
+    elif expr.data == "lt":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " < " + ev2
+    elif expr.data == "gt":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " > " + ev2
+    elif expr.data == "eq":
+        ev1 = exprToStr(expr.children[0])
+        ev2 = exprToStr(expr.children[1])
+        return ev1 + " == " + ev2
+    else:
+        assert False,"Unexpected item in expression!"
+
 def eval(expr, store):
     if expr.data == "expr":
         return eval(expr.children[0], store) 
@@ -195,14 +236,14 @@ def buildCFG(parsed, cfg, parent):
             v = (s.children[0].children[0])[0]
             e = s.children[1]
             eused = used(e)
-            cfg[name] = ("assign",{"def":[v],"use":eused},[])
+            cfg[name] = ("assign",{"def":[v],"use":eused,"val":exprToStr(e)},[])
             return (name, cfg)
         elif stype == "cond":
             e = s.children[0]
             b1 = s.children[1]
             b2 = s.children[2]
             eused = used(e)
-            cfg[name] = ("cond",{"use":eused},[])            
+            cfg[name] = ("cond",{"cond":exprToStr(e),"use":eused},[])            
             (exit1, cfg) = buildCFG(b1, cfg, name)
             (exit2, cfg) = buildCFG(b2, cfg, name)
             mname = newNode()
@@ -215,7 +256,7 @@ def buildCFG(parsed, cfg, parent):
             e = s.children[0]
             b = s.children[1]
             eused = used(e)            
-            cfg[name] = ("loop",{"use":eused},[])            
+            cfg[name] = ("loop",{"cond":exprToStr(e),"use":eused},[])            
             (exit, cfg) = buildCFG(b, cfg, name)
             (_, _, esucc) = cfg[exit]
             esucc.append(name)
