@@ -49,9 +49,7 @@ READINGS FOR MARCH 1ST:
 
 READINGS FOR OVER SPRING BREAK:
 
-- Edward J. Schwartz, Thanassis Avgerinos, David Brumley, "All You Ever Wanted to Know About 
-Dynamic Taint Analysis and Forward Symbolic Execution 
-(but might have been afraid to ask)"
- - https://users.ece.cmu.edu/~aavgerin/papers/Oakland10.pdf 
+- Edward J. Schwartz, Thanassis Avgerinos, David Brumley, "All You Ever Wanted to Know About  Dynamic Taint Analysis and Forward Symbolic Execution (but might have been afraid to ask)"
+   - https://users.ece.cmu.edu/~aavgerin/papers/Oakland10.pdf 
 - Holmes et. al "TSTL: The Template Scripting Testing Language"
    - https://www.cefns.nau.edu/~adg326/sttt17.pdf
