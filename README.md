@@ -30,7 +30,12 @@ LIVING SYLLABUS:
     - Parse
     - Build annotated CFG
     - Walk the annotated CFG
+    
     - Reporting warnings more succinctly
+    - Limiting depth to which loops are unwound
+    
+    - Taint analysis
+    - Side channels
 
 - Dynamic analysis
 - SQL injection attacks
