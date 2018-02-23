@@ -33,3 +33,25 @@ READINGS FOR FEBRUARY 8:
   - http://www.spinroot.com/uno/uno_long.pdf
 - Discussion of python tools:
   - https://blog.codacy.com/review-of-python-static-analysis-tools-ff8e7e27f972
+
+=======================================================================================
+
+READINGS FOR MARCH 1ST:
+
+- Lagorio, "Introduction to fuzzing using American Fuzzy Lop"
+   - https://bart.disi.unige.it/zxgio/phd-course-2017/fuzzing_slides.pdf
+- Gaynor, "Introduction to Fuzzing in Python with AFL"
+   - https://alexgaynor.net/2015/apr/13/introduction-to-fuzzing-in-python-with-afl/    
+- TSTL README.md 
+   - https://github.com/agroce/tstl 
+
+=======================================================================================
+
+READINGS FOR OVER SPRING BREAK:
+
+- Edward J. Schwartz, Thanassis Avgerinos, David Brumley, "All You Ever Wanted to Know About 
+Dynamic Taint Analysis and Forward Symbolic Execution 
+(but might have been afraid to ask)"
+ - https://users.ece.cmu.edu/~aavgerin/papers/Oakland10.pdf 
+- Holmes et. al "TSTL: The Template Scripting Testing Language"
+   - https://www.cefns.nau.edu/~adg326/sttt17.pdf
