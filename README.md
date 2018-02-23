@@ -35,7 +35,11 @@ LIVING SYLLABUS:
     - Limiting depth to which loops are unwound
     
     - Taint analysis
+      - Simple version of SQL injection
     - Side channels
 
 - Dynamic analysis
+  - Intro to afl-fuzz
+  - Intro to TSTL (library testing)
+  
 - SQL injection attacks
