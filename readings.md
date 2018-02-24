@@ -47,7 +47,7 @@ READINGS FOR MARCH 1ST:
 
 plus
 
-bonus material on side channels (which Anderson calls emissions security)
+bonus (optional!) material on side channels (which Anderson calls emissions security)
 
 - Anderson chapter:
   - http://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c17.pdf
