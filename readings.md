@@ -45,6 +45,12 @@ READINGS FOR MARCH 1ST:
 - TSTL README.md 
    - https://github.com/agroce/tstl 
 
+plus
+
+bonus material on side channels (which Anderson calls emissions security)
+
+- http://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c17.pdf
+
 =======================================================================================
 
 READINGS FOR OVER SPRING BREAK:
