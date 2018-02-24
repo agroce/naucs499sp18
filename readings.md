@@ -38,6 +38,8 @@ READINGS FOR FEBRUARY 8:
 
 READINGS FOR MARCH 1ST:
 
+- Miller's famous fuzzing paper:
+  - https://www.semanticscholar.org/paper/An-Empirical-Study-of-the-Reliability-of-UNIX-Util-Miller-Fredriksen/2c13dcfdc5ea2d355a46fe326c371038a00ba7f5
 - Lagorio, "Introduction to fuzzing using American Fuzzy Lop"
    - https://bart.disi.unige.it/zxgio/phd-course-2017/fuzzing_slides.pdf
 - Gaynor, "Introduction to Fuzzing in Python with AFL"
