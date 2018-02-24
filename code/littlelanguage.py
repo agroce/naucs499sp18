@@ -6,6 +6,7 @@ parser = Lark(r"""
 
     expr: "(" expr ")"
           | int
+          | user
           | var
           | add
           | sub
@@ -14,11 +15,14 @@ parser = Lark(r"""
           | lt
           | gt
           | eq
+          | sanitize
 
     add: expr "+" expr
     sub: expr "-" expr
     mul: expr "*" expr
     div: expr "/" expr
+    user: "user!"
+    sanitize: "sanitize" expr
 
     lt: expr "<" expr
     gt: expr ">" expr
@@ -29,6 +33,8 @@ parser = Lark(r"""
     cond: "if" expr block "else" block
     loop: "while" expr block
     print: "print" expr
+    secure: "SECURE" expr
+    skip: "skip"
 
     comment: "//" stmt
 
@@ -37,6 +43,8 @@ parser = Lark(r"""
           | cond ";"
           | loop ";"
           | print ";"
+          | skip ";"
+          | secure ";"
           | comment
 
     block: "{" stmt+ "}"
@@ -55,6 +63,8 @@ def exprToStr(expr):
         return "(" + exprToStr(expr.children[0]) + ")"
     elif expr.data == "expr":
         return exprToStr(expr.children[0])
+    elif expr.data == "sanitize":
+        return "sanitize " + exprToStr(expr.children[0])    
     elif expr.data == "var":
         v = expr.children[0][0]
         return str(v)
@@ -88,12 +98,16 @@ def exprToStr(expr):
         ev1 = exprToStr(expr.children[0])
         ev2 = exprToStr(expr.children[1])
         return ev1 + " == " + ev2
+    elif expr.data == "user":
+        return "user!"
     else:
         assert False,"Unexpected item in expression!"
 
 def eval(expr, store):
     if expr.data == "expr":
-        return eval(expr.children[0], store) 
+        return eval(expr.children[0], store)
+    if expr.data == "sanitize":
+        return eval(expr.children[0], store)     
     elif expr.data == "var":
         v = expr.children[0][0]
         if v not in store:
@@ -131,7 +145,9 @@ def eval(expr, store):
     elif expr.data == "eq":
         ev1 = eval(expr.children[0], store)
         ev2 = eval(expr.children[1], store)
-        return ev1 == ev2            
+        return ev1 == ev2
+    elif expr.data == "user":
+        return 3
     else:
         assert False,"Unexpected item in expression!"
 
@@ -173,7 +189,11 @@ def run(parsed, store):
         elif stype == "print":
             e = s.children[0]
             ev = eval(e, store)
-            print ev          
+            print ev
+        elif stype == "secure":
+            e = s.children[0]
+            ev = eval(e, store)
+            print "I AM DOING A VERY IMPORTANT SECURITY THING WITH",ev               
 
 def CFG(parsed):
     theCFG = {}
@@ -183,7 +203,7 @@ def CFG(parsed):
 def newNodeGen():
     i = 0
     while True:
-        yield "S" + str(i).zfill(4)
+        yield "S" + str(i).zfill(8)
         i += 1
         
 nodeGen = newNodeGen()
@@ -194,6 +214,8 @@ def newNode():
 def used(expr):
     if expr.data == "expr":
         return used(expr.children[0])
+    if expr.data == "sanitize":
+        return used(expr.children[0])    
     elif expr.data == "var":
         v = expr.children[0][0]
         return [v]
@@ -203,8 +225,29 @@ def used(expr):
         ev1 = used(expr.children[0])
         ev2 = used(expr.children[1])
         return ev1 + ev2
+    elif expr.data == "user":
+        return ["user!"]
     else:
-        assert False,"Unexpected item in expression!"    
+        assert False,"Unexpected item in expression!"
+
+def sanitized(expr):
+    if expr.data == "expr":
+        return sanitized(expr.children[0])
+    if expr.data == "sanitize":
+        return used(expr.children[0])        
+    elif expr.data == "var":
+        v = expr.children[0][0]
+        return []
+    elif expr.data == "int":
+        return []
+    elif expr.data in ["add","mul","sub","div","lt","gt","eq"]:
+        ev1 = sanitized(expr.children[0])
+        ev2 = sanitized(expr.children[1])
+        return ev1 + ev2
+    elif expr.data == "user":
+        return []
+    else:
+        assert False,"Unexpected item in expression!"          
 
 def buildCFG(parsed, cfg, parent):
     if parsed.data == "program":
@@ -236,7 +279,10 @@ def buildCFG(parsed, cfg, parent):
             v = (s.children[0].children[0])[0]
             e = s.children[1]
             eused = used(e)
-            cfg[name] = ("assign",{"def":[v],"use":eused,"val":exprToStr(e)},[])
+            esanitized = sanitized(e)
+            cfg[name] = ("assign",{"def":[v],"use":eused,
+                                   "san":esanitized,
+                                   "val":exprToStr(e)},[])
             return (name, cfg)
         elif stype == "cond":
             e = s.children[0]
@@ -265,4 +311,13 @@ def buildCFG(parsed, cfg, parent):
             e = s.children[0]
             eused = used(e)
             cfg[name] = ("print",{"use":eused},[])
-            return (name, cfg)            
+            return (name, cfg)
+        elif stype == "secure":
+            e = s.children[0]
+            eused = used(e)
+            esanitized = sanitized(e)
+            cfg[name] = ("secure",{"use":eused,"san":esanitized},[])
+            return (name, cfg)          
+        elif stype == "skip":
+            cfg[name] = ("skip",{},[])
+            return (name, cfg)
