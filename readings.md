@@ -49,7 +49,11 @@ plus
 
 bonus material on side channels (which Anderson calls emissions security)
 
-- http://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c17.pdf
+- Anderson chapter:
+  - http://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c17.pdf
+- another intro article: http://www.springer.com/cda/content/document/cda_downloaddocument/9780387718279-c1.pdf?SGWID=0-0-45-855982-p173805617
+- heavy duty reading on state-of-the-art static analysis responses:
+  - https://pdfs.semanticscholar.org/5fd4/7722da2f900b94cdaf313e8148658ceefef7.pdf
 
 =======================================================================================
 
