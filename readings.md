@@ -38,12 +38,24 @@ READINGS FOR FEBRUARY 8:
 
 READINGS FOR MARCH 1ST:
 
+- Miller's famous fuzzing paper:
+  - ftp://ftp.cs.wisc.edu/paradyn/technical_papers/fuzz.pdf
 - Lagorio, "Introduction to fuzzing using American Fuzzy Lop"
    - https://bart.disi.unige.it/zxgio/phd-course-2017/fuzzing_slides.pdf
 - Gaynor, "Introduction to Fuzzing in Python with AFL"
    - https://alexgaynor.net/2015/apr/13/introduction-to-fuzzing-in-python-with-afl/    
 - TSTL README.md 
    - https://github.com/agroce/tstl 
+
+plus
+
+bonus (optional!) material on side channels (which Anderson calls emissions security)
+
+- Anderson chapter:
+  - http://www.cl.cam.ac.uk/~rja14/Papers/SEv2-c17.pdf
+- another intro article: http://www.springer.com/cda/content/document/cda_downloaddocument/9780387718279-c1.pdf?SGWID=0-0-45-855982-p173805617
+- heavy duty reading on state-of-the-art static analysis responses:
+  - https://pdfs.semanticscholar.org/5fd4/7722da2f900b94cdaf313e8148658ceefef7.pdf
 
 =======================================================================================
 
