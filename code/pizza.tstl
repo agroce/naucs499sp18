@@ -1,0 +1,14 @@
+@import pizza
+
+pool: <text> 10
+
+<text> := ""
+<text> += 'a'
+<text> += 'z'
+<text> += 'p'
+<text> += 'i'
+<text> += '.'
+<text> += '*'
+<text> += '-'
+
+pizza.runit(<text>)

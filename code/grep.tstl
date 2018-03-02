@@ -1,0 +1,30 @@
+@from subprocess import Popen, PIPE, STDOUT
+
+<@
+def testGrep(search,file):
+    p = Popen(['grep', search], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+    grep_stdout = p.communicate(input=file)[0]
+    if len(grep_stdout) >= 200:
+       print ("OUTPUT:")
+       print ("="*50)
+       print (grep_stdout)
+       print ("="*50)       
+    assert len(grep_stdout) < 200
+@>
+
+pool: <search> 10
+pool: <file> 10
+
+<search> := ""
+<search> += <['a'..'z']>
+<search> += "*"
+<search> += "."
+<search> += "?"
+<search> += chr(<[1..255]>)
+
+<file> := ""
+<file> += <['a'..'z']>
+<file> += " "
+<file> += "\n"
+
+testGrep(<search>,<file>)
