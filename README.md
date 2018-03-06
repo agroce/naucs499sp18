@@ -2,7 +2,7 @@ CS 499: Software Security, Spring 2018
 
 PROF: Alex Groce (github or my web page at https://www.cefns.nau.edu/~adg326/ will give the scoop on me, Google Scholar can tell you most of what I "do")
 
-OFFICE HOURS:  Wed 1:00, SICCS 208
+OFFICE HOURS:  Wed 12:15pm, SICCS 208
 
 Class discussion via slack, assignments submitted via email drop posted in slack
 
