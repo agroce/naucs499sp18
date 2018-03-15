@@ -65,6 +65,7 @@ READINGS FOR OVER SPRING BREAK:
    - https://users.ece.cmu.edu/~aavgerin/papers/Oakland10.pdf 
 - Holmes et. al "TSTL: The Template Scripting Testing Language"
    - https://www.cefns.nau.edu/~adg326/sttt17.pdf
+- Go back and read "Coverage and its Discontents" http://www.cefns.nau.edu/~adg326/onwardessays14.pdf if you haven't
    
 and especially, for discussion in class after Spring Break,
 
