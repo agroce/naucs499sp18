@@ -65,3 +65,8 @@ READINGS FOR OVER SPRING BREAK:
    - https://users.ece.cmu.edu/~aavgerin/papers/Oakland10.pdf 
 - Holmes et. al "TSTL: The Template Scripting Testing Language"
    - https://www.cefns.nau.edu/~adg326/sttt17.pdf
+   
+and especially, for discussion in class after Spring Break,
+
+- Bug Hunter's Diary, Chapters 1, 2, and 7
+   - https://leaksource.files.wordpress.com/2014/08/a-bug-hunters-diary.pdf
