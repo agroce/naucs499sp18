@@ -71,3 +71,9 @@ and especially, for discussion in class after Spring Break,
 
 - Bug Hunter's Diary, Chapters 1, 2, and 7
    - https://leaksource.files.wordpress.com/2014/08/a-bug-hunters-diary.pdf
+   
+=======================================================================================
+
+Bonus static analysis reading:
+  - https://cacm.acm.org/magazines/2010/2/69354-a-few-billion-lines-of-code-later/fulltext
+  (one of the best articles on real-world static analysis, with some amusing and deep insights)
