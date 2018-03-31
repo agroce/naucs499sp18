@@ -77,3 +77,10 @@ and especially, for discussion in class after Spring Break,
 Bonus static analysis reading:
   - https://cacm.acm.org/magazines/2010/2/69354-a-few-billion-lines-of-code-later/fulltext
   (one of the best articles on real-world static analysis, with some amusing and deep insights)
+
+=======================================================================================
+
+READING FOR APRIL 5TH
+
+SQL injection detection via dynamic analysis:
+  - https://hiper.cis.udel.edu/lp/lib/exe/fetch.php/courses/issta08-wassermann-testgenweb.pdf
