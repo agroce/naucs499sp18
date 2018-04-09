@@ -44,6 +44,11 @@ LIVING SYLLABUS:
   - Intro to afl-fuzz
   - Intro to TSTL (library testing)
 
+  - Grammar-based fuzzing and target selection criteria
+    - Solidity compiler example (fuzz in a way nobody has fuzzed
+    before)
+	- Pick targets of actual value, for white hat or black hat purposes!
+
   - Practical fuzzing combined with "manual static analysis"
 
   - Building exploits
