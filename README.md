@@ -44,18 +44,18 @@ LIVING SYLLABUS:
   - Intro to afl-fuzz
   - Intro to TSTL (library testing)
 
-- Practical fuzzing combined with "manual static analysis"
+  - Practical fuzzing combined with "manual static analysis"
 
-- Building exploits
+  - Building exploits
 
-- Kinds of dynamic analysis (stuff to check for!) esp. useful in security
-  - "Crashes" (obviously)
-  - Memory safety more generally:  bad access without crash
-  - Taint
-  - Determinism
-  - Nondeterminism
-  - Race conditions
+  - Kinds of dynamic analysis (stuff to check for!) esp. useful in security
+    - "Crashes" (obviously)
+    - Memory safety more generally:  bad access without crash
+    - Taint
+    - Determinism
+    - Nondeterminism
+    - Race conditions
 
-- SQL injection attacks
-  - Dynamic analysis paper, concolic testing, specialized queries,
+  - SQL injection attacks
+    - Dynamic analysis paper, concolic testing, specialized queries,
   working backwards from a failure 
