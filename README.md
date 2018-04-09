@@ -6,6 +6,8 @@ OFFICE HOURS:  Wed 12:15pm, SICCS 208
 
 Class discussion via slack, assignments submitted via email drop posted in slack
 
+3 assignments + 1 in-class test (20% of grade each)
+
 LIVING SYLLABUS:
 
 - Intro to Software Security (READ ANDERSON)
@@ -41,5 +43,19 @@ LIVING SYLLABUS:
 - Dynamic analysis
   - Intro to afl-fuzz
   - Intro to TSTL (library testing)
-  
+
+- Practical fuzzing combined with "manual static analysis"
+
+- Building exploits
+
+- Kinds of dynamic analysis (stuff to check for!) esp. useful in security
+  - "Crashes" (obviously)
+  - Memory safety more generally:  bad access without crash
+  - Taint
+  - Determinism
+  - Nondeterminism
+  - Race conditions
+
 - SQL injection attacks
+  - Dynamic analysis paper, concolic testing, specialized queries,
+  working backwards from a failure 
