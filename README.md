@@ -70,3 +70,14 @@ LIVING SYLLABUS:
 Class in a few whiteboards:
 
 ![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0288.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0289.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0291.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0292.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0293.jpg)
+
+
+
