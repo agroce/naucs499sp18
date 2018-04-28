@@ -1,12 +1,12 @@
 CS 499: Software Security, Spring 2018
 
-PROF: Alex Groce (github or my web page at https://www.cefns.nau.edu/~adg326/ will give the scoop on me, Google Scholar can tell you most of what I "do")
+PROF: Alex Groce (github or my web page at https://agroce.github.io will give the scoop on me, Google Scholar can tell you most of what I "do")
 
 OFFICE HOURS:  Wed 12:15pm, SICCS 208
 
 Class discussion via slack, assignments submitted via email drop posted in slack
 
-3 assignments + 1 in-class test (20% of grade each)
+3 assignments + 1 in-class test (25% of grade each)
 
 LIVING SYLLABUS:
 
@@ -64,3 +64,20 @@ LIVING SYLLABUS:
   - SQL injection attacks
     - Dynamic analysis paper, concolic testing, specialized queries,
   working backwards from a failure 
+
+
+
+Class in a few whiteboards:
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0288.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0289.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0291.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0292.jpg)
+
+![GONE!](https://github.com/agroce/naucs499sp18/blob/master/testreview/IMG_0293.jpg)
+
+
+
