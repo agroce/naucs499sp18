@@ -189,11 +189,11 @@ def run(parsed, store):
         elif stype == "print":
             e = s.children[0]
             ev = eval(e, store)
-            print ev
+            print(ev)
         elif stype == "secure":
             e = s.children[0]
             ev = eval(e, store)
-            print "I AM DOING A VERY IMPORTANT SECURITY THING WITH",ev               
+            print("I AM DOING A VERY IMPORTANT SECURITY THING WITH",ev)
 
 def CFG(parsed):
     theCFG = {}
