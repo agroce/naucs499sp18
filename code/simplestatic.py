@@ -2,7 +2,7 @@ import littlelanguage as ll
 import cfggraph
 
 
-import resource, sys
+import sys
 sys.setrecursionlimit(2**15)
 
 
@@ -52,9 +52,9 @@ def printWarnings():
     allWarnings = warnings.iteritems()
     sortedWarnings = sorted(allWarnings, key = lambda w:w[0][1])
     for (mn, path) in sortedWarnings:
-        print "*"*50
+        print("*"*50)
         (msg, node) = mn
-        print msg, " IN ", node, ":", path    
+        print(msg, " IN ", node, ":", path)
 
 def WARNING(msg, node, path):
     if (msg, node) in warnings:
@@ -163,9 +163,9 @@ def checkSecurity(cfg):
 cfg = ll.CFG(P)
 for node in sorted(cfg.keys()):
     (name, data, succ) = cfg[node]
-    print node,":",name,data
+    print(node,":",name,data)
     for s in succ:
-        print "  --> ",s
+        print("  --> ",s)
 
 #cfggraph.makeGraph(cfg,"mycfg")
         
@@ -176,7 +176,7 @@ checkSecurity(cfg)
 if len(getWarnings()) == 0:
     ll.run(P,{})
 else:
-    print "STATIC ANALYSIS WARNINGS: DO NOT EXECUTE!"
+    print("STATIC ANALYSIS WARNINGS: DO NOT EXECUTE!")
     printWarnings()
         
 
