@@ -152,7 +152,7 @@ def findSecurityIssue(cfg, node, tainted, path):
             newTainted.append(t)
     
     for s in succ:
-        sf = filter(lambda p: p == s, path)
+        sf = list(filter(lambda p: p == s, path))
         if len(sf) < K:        
             findSecurityIssue(cfg, s, newTainted, path + [s])
 
