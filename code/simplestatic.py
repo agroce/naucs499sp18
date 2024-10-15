@@ -84,7 +84,7 @@ def findDeclIssues(cfg, node, decls, useds, path):
                 if d in decls:
                     WARNING(d + " decld TWICE", node, path)                
     for s in succ:
-        sf = filter(lambda p: p == s, path)
+        sf = list(filter(lambda p: p == s, path))
         if len(sf) < K:
             findDeclIssues(cfg, s, decls + decld, useds + used, path + [s])
             
@@ -108,7 +108,7 @@ def findBadUseDef(cfg, node, defs, path):
         if "def" in data:
             defd = data["def"]
     for s in succ:
-        sf = filter(lambda p: p == s, path)
+        sf = list(filter(lambda p: p == s, path))
         if len(sf) < K:        
             findBadUseDef(cfg, s, defs + defd, path + [s])
 
